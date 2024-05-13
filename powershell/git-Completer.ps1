@@ -25,5 +25,9 @@ Register-ArgumentCompleter -Native -CommandName git -ScriptBlock {
             $branchList = @(git branch --format='%(refname:short)')
             return $branchList -like "$wordToComplete*"
         }
+        { $_ -eq "tag" -and $sections[2] -eq "-d" } {
+            $tagList = @(git tag)
+            return $tagList -like "$wordToComplete*"
+        }
     }
 }
